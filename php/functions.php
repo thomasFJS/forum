@@ -46,4 +46,11 @@ function getUserByLogin($login){
 
   return $query;
 }
+
+function insertPost($title, $description, $idUser){
+  $db = getConnexion();
+  $query = $db->prepare('INSERT INTO tNews (title, description, idUser)
+  VALUES ("'. $title .'", "' . $description . '", "'. $idUser .'"); ');
+  $query->execute();
+}
 ?>

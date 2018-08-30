@@ -14,7 +14,22 @@ if(!isset($_SESSION['logged'])){
     <link rel="stylesheet" type="text/css" href="../style/style.css"/>
 </head>
 <body>
+  <?php
+  if(isset($_SESSION['errors']['title'])){
+    echo "<h1>". $_SESSION['errors']['title'] . "</h1>";
+    unset($_SESSION['errors']['title']);
+  }
+  if(isset($_SESSION['errors']['description'])){
+    echo "<h1>". $_SESSION['errors']['description'] . "</h1>";
+    unset($_SESSION['errors']['description']);
+  }
+  if(isset($_SESSION['errors']['insertPost'])){
+    echo "<h1>". $_SESSION['errors']['insertPost'] . "</h1>";
+    unset($_SESSION['errors']['insertPost']);
+  }
+  ?>
 	<h1>Bonjour <?php echo $_SESSION["userData"][0]["surname"] . " " . $_SESSION["userData"][0]["name"];?>, voici votre fil d'actualités</h1>
+
 <form method="POST" action="./post.php">
   <fieldset>
     <legend>Nouveau post</legend>
