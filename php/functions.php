@@ -46,11 +46,29 @@ function getUserByLogin($login){
 
   return $query;
 }
+function getUserById($id){
+  $db = getConnexion();
+  $query = $db->prepare('SELECT idUser, surname, name, login FROM tuser WHERE idUser="'. $id .'";');
+  $query->execute();
+
+  $query = $query->fetchAll();
+
+  return $query;
+}
 
 function insertPost($title, $description, $idUser){
   $db = getConnexion();
   $query = $db->prepare('INSERT INTO tNews (title, description, idUser)
   VALUES ("'. $title .'", "' . $description . '", "'. $idUser .'"); ');
   $query->execute();
+}
+
+function getPost(){
+  $db = getConnexion();
+  $query = $db->prepare('SELECT title, description, idUser FROM tnews');
+  $query->execute();
+  $query = $query->fetchAll();
+
+  return $query;
 }
 ?>

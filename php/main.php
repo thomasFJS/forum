@@ -41,7 +41,16 @@ if(!isset($_SESSION['logged'])){
   </fieldset>
 </form>
 <form method="POST" action="./logout.php">
- <input type="submit" value="Déconnection" name="submit">
+ <input type="submit" value="Déconnexion" name="submit">
 </form>
+
+<?php
+$_SESSION['postData'] = getPost();
+
+for($i=count($_SESSION['postData'])-1;$i>=0;$i--){
+  $auteur = getUserById($_SESSION['postData'][$i]["idUser"]);
+  echo '<div id="post">Auteur: '. $auteur[0]["surname"] .' '. $auteur[0]["name"] .'<h1>' . $_SESSION["postData"][$i]["title"] .' </h1><p>'. $_SESSION["postData"][$i]["description"] .'</p></div>';
+}
+?>
 </body>
 </html>
